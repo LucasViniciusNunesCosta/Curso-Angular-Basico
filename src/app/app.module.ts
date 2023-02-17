@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ReplacePipe } from './pipe/replace.pipe';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CourseInfoComponent } from './courses/course-info.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CoursesComponent,
     StarComponent,
     ReplacePipe,
-    NavBarComponent
+    NavBarComponent,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
       },
       {
         path: 'courses', component: CoursesComponent
+      },
+      {
+        path: 'courses/info/:id', component: CourseInfoComponent
       },
       {
         path: '**', component: NotFoundComponent
