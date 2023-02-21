@@ -1,0 +1,39 @@
+# Realizando uma requisição HTTP
+
+Importamos o HttpClientModule no AppModule.ts do projeto
+
+Importamos dentro do construtor do service onde iremos consumir o serviço o módulo HttpClient como private.
+constructor(private httpClient: HttpClient(){}
+
+Criamos uma variavel com a URl base da requisição que iremos fazer para adiantar o trabalho de não precisar ficar reescrevendo a URL.
+
+private baseUrl: string = "[http://localhost:3100/endereco/base](http://localhost:3100/endereco/base)";
+
+Para usar o http para realizar consultas com o GET definimos como retorno dentro de um método
+this.httpClient.get<TipoDeRetorno>{Url da requisição}
+-Definimos dentro do <> é o tipo de dados que desejamos receber com a requisição que geralmente é um array.
+
+-Dentro do {} inserimos a URL da requisição que desejamos realizar. Como inserimos a URL dentro de uma variavel ficaria this.baseUrl
+
+O método está realizando a requisição deve ter seu retorno alterado para um Observable com o tipo de dado que será recebido.
+Por exemplo: metodo(): Observable<DadoRecebido[]>{}
+
+----------------------------------------------------------------------------------------
+
+No component que iremos consumir o service chamamos o método do service, porém como o método agora é um observable precisamos colocar um .subscribe{} no final para que de fato a requisição seja realizada.
+
+O subscribe nos permite utilizar algumas funções callback para que possamos trabalhar.
+
+Dente essas callback está o **next** que define os proximos passos caso a requisição seja bem-sucedida.
+
+O next espera receber um retorno e para isso definimos como irá se chamar esse retorno como uma variável.
+
+next: nomeRetorno ⇒{}
+
+Dentro das chames {} definimos o que será feito com esses dados resgatados da requisição.
+
+Outra callback que podemos usar é o **error** que define o que será feito em caso de erros ao realizar a requisição.
+
+Da mesma forma que o next o error também espera receber um retorno, e com isso definimos uma variavel que irá receber esse retorno para que possamos acessar os dados.
+
+error: nomeRetorno ⇒ {}
