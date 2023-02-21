@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoursesComponent } from './courses/courses.component';
+import { CourseListComponent } from './courses/course-list.component';
 import { StarComponent } from './star/star.component';
 import { FormsModule } from '@angular/forms';
 import { ReplacePipe } from './pipe/replace.pipe';
@@ -15,7 +16,7 @@ import { CourseInfoComponent } from './courses/course-info.component'
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
+    CourseListComponent,
     StarComponent,
     ReplacePipe,
     NavBarComponent,
@@ -25,12 +26,13 @@ import { CourseInfoComponent } from './courses/course-info.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo: 'courses', pathMatch: "full"
       },
       {
-        path: 'courses', component: CoursesComponent
+        path: 'courses', component: CourseListComponent
       },
       {
         path: 'courses/info/:id', component: CourseInfoComponent
