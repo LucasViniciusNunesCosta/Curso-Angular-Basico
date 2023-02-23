@@ -1,0 +1,45 @@
+# Alterando Informações com HTTP
+
+Na classe de serviço criamos um método que recebe um parâmetro e é do tipo Observable
+
+método(course: Course): Observable<Course>{}
+
+Dentro desse método fazemos um IF para verificar se o parâmetro que estamos usando como base já está preenchido na informação que selecionamos, desta forma é possível identificar se é uma alteração ou criação.
+
+if(course.id){
+
+//acao a ser executada
+
+}
+
+else{
+
+}
+
+Caso o resultado seja positivo chamados o httpClient com o método PUT indicando que estamos realizando uma alteração no conteúdo. Esse PUT vai nos retornar um tipo de dado que deve ser definido entre <>.
+
+this.httpClient.put<Cursos>()
+
+Dentro dos () definimos a URL concatenada com o parâmetro que estamos usando como referencia para realizar a alteração, que geralmente é o parâmetro ID. Após passar a URL concatenada com o ID passamos também o parâmetro recebido no método que estamos chamando.
+
+this.httpClient.put<Course>(’${this.Url}/${course.id}’,course);
+
+Caso seja verificado no IF que o parâmetro não está preenchido mudamos o método para POST pois será uma criação e não uma alteração, além disso não deve ser passado o parâmetro na URL pois ainda está sendo criado.
+
+this.httpClient.post<Course>(’${this.URL}’, course);
+
+---
+
+Agora no component que está consumindo o método do service devemos usar o .subscribe e adicionar o next e error para tratar as ações que serão realizadas caso seja bem sucedido e caso dê algum erro.
+
+metodoChama(): void{
+
+this.service.metodo(this.curso).subscribe({
+
+next: curso ⇒ console.log(”Salvo com sucesso”, curso),
+
+error: err ⇒ console.log(”Error”, err)
+
+});
+
+}
