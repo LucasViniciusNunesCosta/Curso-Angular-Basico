@@ -1,0 +1,17 @@
+# Passando um parametro no corpo da requisição
+
+Criamos um método no service que irá realizar a requisição, este método recebe como parametro o nome do parametro e seu tipo.
+
+Ex PassandoParametro(id: number){}
+
+Como padrão de uma requisição HTTP, a requisição espera receber um observable e definimos o nome e tipo do observable entre os <>.
+
+EX: PassandoParametro(id: number): Observable<Retorno>{}
+
+----------------------------------------------
+
+No componente que está consumindo o servico precisamos modificar para ser um subscribe o método que está chamado a requisição do service.
+
+E como padrão deste tipo de requisição, usamos o next e error para definir quais serão os proximos passos em caso de sucesso ou erro da requisição.
+
+Caso quando a aplicação se inicie algum dos parametros tenha gerado erro por não ter sido encontrado, podemos definir no component HTML que está exibindo as informações um ngIf com a variavel que estamos listando, assim estamos falando para o angular exibir a informação apenas quando aquela variavel tiver conteúdo. Desta forma os dados serão exibidos apenas quando a requisição for finalizada.
