@@ -1,0 +1,25 @@
+# Segregando módulos
+
+Fazer isso é como separar as dependências que cada component irá precisar
+
+Segregar responsábilidade, separando as caracteristicas que os elementos irão ter com base no módulo que ele pertence.
+
+Duas propriedades importantes dentro de um módulo são o "`declarations`" onde informamos os pipes e componentes. A propriedade "`imports`" onde declaramos quais são os outros módulos que  esse módulo precisa como dependência. (As duas devem ficar dentro do `@NgModule`)
+
+Para importar as rotas que esse módulo precisa ter, definimos dentro do imports a propriedade `RouterModule.forChild{}` por não ser o módulo 'pai'
+Fica da seguinte forma:
+imports:{
+RouterModule.forRoot([
+{path:'', component: telaLogin}
+])
+}
+
+Depois de realizar todas as configurações no módulo 'filho' precisamos importar esse módulo no módulo principal.
+
+Após realizar isso podem ser gerados alguns erros pois um component não pode ser importado em dois módulos no angular, para isso precisamos remover o component do módulo principal.
+
+De mesma forma podem ocorrer outros erros por conta das dependências que não estão presentes no novo módulo assim como no principal, desta forma precisamos importar determinados módulos padrão fornecidos pelo angular com recursos necessários para as aplicações.
+
+Quando precisamos exportar algum component que está dentro do módulo para ser utilizado por outros módulos definimos o "`exports`" desta forma os components que estiverem dentro dele estão elegiveis para serem importados dentro de outros módulos.
+
+Dentro do módulo que iremos importar o component não importamos dentro do declarations como de costume, importamos o modulo onde o component que iremos utilizar está dentro do "`imports`".
