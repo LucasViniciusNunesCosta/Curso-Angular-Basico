@@ -1,0 +1,9 @@
+# Shared módulos
+
+Consiste em uma pasta que contem componentes que são de nível pequenos e que devem ser compartilhados em diversos locais na aplicação.
+
+Os components são inseridos dentro de uma pasta chamada `shared`
+
+Dentro da pasta shared é importante separar em mais pastas como component, pipe e images, pois a pasta shared pode conter muitos tipos de arquivos. Desta forma ao entrar na shared conseguimos encontrar as coisas de maneira mais prática.
+
+Quando importamos um component para dentro da pasta shared, é interessante criarmos um módulo para este component, pois se for utilizado um módulo para todos os components e coisas que estiverem dentro da pasta shared este módulo geralmente fica pesado.
