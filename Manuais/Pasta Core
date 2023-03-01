@@ -1,0 +1,11 @@
+# Pasta Core
+
+Diferente da pasta shared esta pasta fica responsável por componentes mais pesados e utilizados, como por exemplo uma navbar que geralmente é utilizada em todas as telas.
+
+Para isso criamos uma pasta com o nome core e importamos os componentes que precisamos para dentro dela, criamos um arquivo com o nome `core.module` que será responsável por esta pasta.
+
+O arquivo core.module deve estar elegível para ser um módulo com o @NgModule, dentro do declarations deve estar sendo importado os componenents que estão dentro do core. Precisamos definir no arquivo um exports com o component que desejamos exportar, desta forma conseguiremos utilizar em outros módulos.
+
+Para usar o Core criado importamos apenas o core.module no módulo principal, desta forma todos os componentes que estão dentro do core estarão disponíveis para uso.
+
+Importante importar o RouterModule dentro do core para assim poder ter acesso as rotas.
