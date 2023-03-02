@@ -1,0 +1,7 @@
+# Tratando erros com angular
+
+Componentes de erro devem estar dentro do core, pois em todos os módulos quando é gerado um erro esses componentes são requisitados.
+
+No arquivo `core.module` definimos o arquivo de erro no `declarations` e dentro do `exports`.
+
+Para usar os components de erro importamos apenas o core.module no módulo principal, desta forma todos os componentes que estão dentro do core estarão disponíveis para uso.
