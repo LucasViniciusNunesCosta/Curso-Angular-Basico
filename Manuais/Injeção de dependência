@@ -1,0 +1,23 @@
+# O que é injeção de dependência
+
+Injeção de dependência consiste em importar um arquivo service que iremos precisar usar determinada função dentro do component que estamos trabalhando
+
+Dentro do arquivo service é definido o decorator `@Injectable({})` com um `providedIn: 'root'` indicando que este arquivo é elegivel para injeção de dependência.
+
+O providedIn dentro do Injectable faz com que este arquivo seja carregado no Root da aplicação.
+
+Criamos as coisas que o service irá executar dentro do export
+
+Não é indicado colocar em classes de serviço variáveis que são alteradas nos métodos de serviço.
+
+O service é indicado para armazenar métodos que chamem ou façam uma operação.
+
+---
+
+No component que desejamos realizar a injeção da dependência importamos o service dentro do construtor.
+
+Chamando o service dentro do construtor do component definimos como private e chamamos o nome do export que está no service.
+constructor(private instanciaService: nomeService){}
+
+Para consumir os métodos que foram definidos dentro do service acessamos dentro do `ngOnInit()`
+this.variavel = this.instanciaService.nomeMetodo();
