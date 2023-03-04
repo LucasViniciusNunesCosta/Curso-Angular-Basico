@@ -1,0 +1,48 @@
+# Filtrando conteúdo com two-way data binding
+
+No HTML dentro do input que iremos utilizar como barra de filtragem para os conteúdos adicionamos um `[(ngModel)]=""` onde dentro das aspas `""` declaramos o nome que desejamos linkar com o typescript.
+
+Quando é definido um [(ngModel)]="" o nome que adicionamos irá trocar informações com a variável do TS nos permitindo fazer alterações em tempo real.
+
+Como desejamos fazer um filtro definimos o nome que está declarado no ngModel como nome de duas função no TS, sendo uma `set` e outra `get`.
+
+
+A função `set` irá receber como parâmetro um value do tipo string
+set filter(value: string){}
+
+
+Para facilitar o desenvolvimento definimos uma variável local, para isso a variável deve ter um `"_"` antes do nome. Essa variável será usada para ser igualada ao valor recebido pelo value do `filter`.
+_filterBy: string;
+
+set filter(value: string){
+	this._filterBy = value
+}
+
+
+Para o `get` não recebemos nenhum valor como parâmetro, apenas retornamos o valor do filterBy.
+
+Para que tudo funcione, precisamos ter um array com as informações que desejamos filtrar e outro para receber as informações depois que filtrar.
+_informacoes: Infos[] = [];
+_filteredInfomacoes: Infos[] = [];
+
+
+Esses dois arrays devem ser igualados assim que o projeto for iniciado, para isso dentro do `ngOnInit()` realizamos este procedimento.
+this._filteredInformacoes = this._informacoes;
+
+
+Após igualar os dois arrays vamos para a função filter onde iremos filtrar o array de informações filtradas.
+this.filteredInformacoes = this.informacoes.filter()
+
+
+Dentro do `filter` criamos uma variável para iteração que será do mesmo tipo do array que estamos filtrando, essa variável irá chamar um arrow function declarando o parâmetro que será utilizado para filtragem.
+this.filteredInformacoes = this.informacoes.filter((variavelIteracao: Infos) =>
+ variavelIteracao.parametro.toLocaleLowerCase());
+
+
+Para garantir que o filtro funcione, definimos um `indexOf` com a informação que é recebida como parâmetro na função `SET` e verificando se é maior que -1.
+this.filteredInformacoes = this.informacoes.filter((variavelIteracao: Infos) => 
+variavelIteracao.parametro.toLocaleLowerCase()
+.indexOf(this._filterBy.toLocaleLowerCase()) >-1);
+
+
+Agora para que seja exibida apenas a lista com as informações que estamos filtrando definimos para ser listada apenas as informações da variável filtrada.
